@@ -18,7 +18,7 @@
                 <select class="form-select" name="base" aria-label="select base currency">
                     <option >Open this select menu</option>
                     {% for currency in base_currencies|sort %}
-                        <option value="{{ currency }}"{% if currency == (converted_data.target ?? 'EUR') %} selected{% endif %}>{{ currency }}</option>
+                        <option value="{{ currency }}"{% if currency == (converted_data.base ?? 'EUR') %} selected{% endif %}>{{ currency }}</option>
                     {% endfor %}
                 </select>
             </div>
