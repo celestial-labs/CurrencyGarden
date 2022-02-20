@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if(converted_data) %}
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold">{{ converted_data.value }}</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="mb-1">From: {{ converted_data.base }} To: {{ converted_data.target }}</p>
+                <p class="lead mb-4">Last updated: {{ converted_data.updated_at }}</p>
+            </div>
+        </div>
+    {% endif %}
+
+    <form class="row align-items-center" method="post" action="/">
+        <div class="row mb-3">
+            <label for="inputBase" class="col-sm-2 col-form-label">From Currency</label>
+            <div class="col-sm-10">
+                <select class="form-select" name="base" aria-label="select base currency">
+                    <option >Open this select menu</option>
+                    {% for currency in base_currencies|sort %}
+                        <option value="{{ currency }}"{% if currency == (converted_data.target ?? 'EUR') %} selected{% endif %}>{{ currency }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputBase" class="col-sm-2 col-form-label">To Currency</label>
+            <div class="col-sm-10">
+                <select class="form-select" name="target" aria-label="select base currency">
+                    {% for currency in target_currencies|sort %}
+                        <option value="{{ currency }}"{% if currency == (converted_data.target ?? 'USD') %} selected{% endif %}>{{ currency }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="amount" class="col-sm-2 col-form-label">Amount</label>
+            <div class="col-sm-10">
+                <input type="number" name="amount" class="form-control" id="amount" placeholder="">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Convert</button>
+    </form>
+{% endblock %}
