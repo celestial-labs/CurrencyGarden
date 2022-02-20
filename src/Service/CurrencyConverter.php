@@ -21,6 +21,10 @@ class CurrencyConverter
 
   public function convert($base, $target, $amount = 1): array
   {
+    if(!$amount) {
+      $amount = 1;
+    }
+
     $repository = $this->doctrine->getRepository(ExchangeRate::class);
 
     $rate = $repository->findOneBy([
