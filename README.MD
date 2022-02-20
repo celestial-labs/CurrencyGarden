@@ -1,6 +1,8 @@
+## Setup
 
+`composer install`
 
+`php bin/console doctrine:migrations:migrate`
 
-
-symfony server:start
+`symfony server:start`
 
