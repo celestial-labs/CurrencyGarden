@@ -21,9 +21,7 @@ class CurrencyConverter
 
   public function convert($base, $target, $amount = 1): array
   {
-    if(!$amount) {
-      $amount = 1;
-    }
+    if(!$amount) $amount = 1;
 
     $repository = $this->doctrine->getRepository(ExchangeRate::class);
 
@@ -50,9 +48,7 @@ class CurrencyConverter
   public function refreshRates($baseCurrency = null): void
   {
     //set default to EUR
-    if(is_null($baseCurrency)) {
-      $baseCurrency = 'EUR';
-    }
+    if(is_null($baseCurrency)) $baseCurrency = 'EUR';
 
     $entityManager = $this->doctrine->getManager();
     $repro = $this->doctrine->getRepository(ExchangeRate::class);
